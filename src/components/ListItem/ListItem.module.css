@@ -1,0 +1,63 @@
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px 25px 15px 10px;
+  font-size: 16px;
+  background-color: var(--color-background-tertiary);
+  border-radius: 5px;
+  box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.date {
+  color: var(--color-text-secondary);
+  font-size: 14px;
+}
+
+.aciton {
+  display: flex;
+  align-items: center;
+  position: absolute;
+
+  top: 0;
+  right: -60px;
+  height: 100%;
+  width: 70px;
+  border-radius: 5px;
+  overflow: hidden;
+  transition: .3s;
+}
+
+.aciton:hover {
+  transform: translateX(-60px);
+}
+
+.edit,
+.delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+
+.edit svg,
+.delete svg {
+  width: 20px;
+  height: 20px;
+}
+
+.edit {
+  background-color: #95652F;
+
+}
+
+.delete {
+  background-color: #902C97;
+  width: 100%;
+  height: 100%;
+}

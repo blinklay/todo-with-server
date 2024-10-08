@@ -1,3 +1,14 @@
+:root {
+  --color-background: #5C329E;
+  --color-background-secondary: #231C2E;
+  --color-background-tertiary: #2B2437;
+
+  --color-border: #322B3C;
+
+  --color-text: #BCBABF;
+  --color-text-secondary: #635F6C;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -6,9 +17,16 @@
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  color: #000;
+  color: var(--color-text);
+  background-color: var(--color-background);
   font-size: 18px;
   line-height: 1.2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100vh;
 }
 
 ul {
