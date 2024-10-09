@@ -3,6 +3,8 @@ import styles from "./App.module.css";
 import Form from "./components/Form/Form";
 import List from "./components/List/List";
 import SortButton from "./components/SortButton/SortButton";
+import SearchButton from "./components/SearchButton/SearchButton";
+import { IoIosArrowUp } from "react-icons/io";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -12,13 +14,11 @@ function App() {
   const [refreshTdoos, setRefreshTodos] = useState(false);
 
   const [isSort, setIsSort] = useState(false);
-  const tempTodos = [...todos];
+  const [isSearch, setIsSearch] = useState(false);
+
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
-    const obj = [{ title: "b" }, { title: "a" }, { title: "c" }];
-
-    console.log(obj.sort((a, b) => (a.title > b.title ? 1 : -1)));
-
     setIsLoading(true);
 
     fetch("http://localhost:3000/todos")
@@ -28,10 +28,6 @@ function App() {
       })
       .finally(() => setIsLoading(false));
   }, [refreshTdoos]);
-
-  useEffect(() => {
-    console.log(todos);
-  }, [todos]);
 
   const toSortMode = () => {
     if (isSort) {
@@ -84,11 +80,40 @@ function App() {
       .then(() => setRefreshTodos(!refreshTdoos));
   };
 
+  const toSearch = () => {
+    if (searchValue === "") setRefreshTodos(!refreshTdoos);
+    else {
+      setTodos(
+        todos.filter((todo) => {
+          return todo.title.includes(searchValue);
+        })
+      );
+    }
+  };
+
   return (
     <>
       {isLoading && <div className={styles.laoder}></div>}
       {!isLoading && (
-        <>
+        <div>
+          <div className={`${styles.search} ${isSearch ? styles.show : ""}`}>
+            <button
+              className={`${styles["show-button"]} ${
+                isSearch ? styles.rotate : ""
+              }`}
+              onClick={() => setIsSearch(!isSearch)}
+            >
+              <IoIosArrowUp />
+            </button>
+            <SearchButton toSearch={toSearch} />
+            <input
+              onChange={(e) => setSearchValue(e.target.value)}
+              value={searchValue}
+              type="text"
+              className={styles["search-field"]}
+              placeholder="Search"
+            />
+          </div>
           <div className={styles.body}>
             <Form createTodo={createTodo} isTodoCreating={isTodoCreating} />
             <SortButton isSort={isSort} toSortMode={toSortMode} />
@@ -97,7 +122,7 @@ function App() {
             )}
             <List todos={todos} removeTodo={removeTodo} editTodo={editTodo} />
           </div>
-        </>
+        </div>
       )}
     </>
   );

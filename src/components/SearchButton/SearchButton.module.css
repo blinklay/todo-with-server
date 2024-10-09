@@ -1,0 +1,16 @@
+.search {
+  background-color: var(--color-background-tertiary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 5px;
+  border: 2px solid var(--color-border);
+  right: 0;
+  z-index: 2;
+}
+
+.active {
+  transform: scale(0.9);
+  opacity: 0.8;
+}
