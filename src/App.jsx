@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./App.module.css";
 import Form from "./components/Form/Form";
 import List from "./components/List/List";
+import SortButton from "./components/SortButton/SortButton";
 
 function App() {
   const [todos, setTodos] = useState([]);
@@ -10,7 +11,14 @@ function App() {
   const [isTodoCreating, setIsTodoCreating] = useState(false);
   const [refreshTdoos, setRefreshTodos] = useState(false);
 
+  const [isSort, setIsSort] = useState(false);
+  const tempTodos = [...todos];
+
   useEffect(() => {
+    const obj = [{ title: "b" }, { title: "a" }, { title: "c" }];
+
+    console.log(obj.sort((a, b) => (a.title > b.title ? 1 : -1)));
+
     setIsLoading(true);
 
     fetch("http://localhost:3000/todos")
@@ -20,6 +28,19 @@ function App() {
       })
       .finally(() => setIsLoading(false));
   }, [refreshTdoos]);
+
+  useEffect(() => {
+    console.log(todos);
+  }, [todos]);
+
+  const toSortMode = () => {
+    if (isSort) {
+      setRefreshTodos(!refreshTdoos);
+    } else {
+      setTodos((prev) => prev.sort((a, b) => (a.title > b.title ? 1 : -1)));
+    }
+    setIsSort(!isSort);
+  };
 
   const createTodo = (value) => {
     if (value === "") return;
@@ -70,6 +91,7 @@ function App() {
         <>
           <div className={styles.body}>
             <Form createTodo={createTodo} isTodoCreating={isTodoCreating} />
+            <SortButton isSort={isSort} toSortMode={toSortMode} />
             {todos.length === 0 && (
               <div className={styles.message}>Записей не обнаружено...</div>
             )}
