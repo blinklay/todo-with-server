@@ -35,3 +35,9 @@
 .form-input::placeholder {
   color: var(--color-text);
 }
+
+.submit[disabled],
+.form-input[disabled] {
+  opacity: 0.4;
+  cursor: default;
+}

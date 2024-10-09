@@ -1,17 +1,14 @@
 {
   "todos": [
     {
-      "id": 1,
-      "title": "Work out",
-      "date": "22/09/2024",
-      "isCompleted": false
+      "title": "123",
+      "date": "09.10.2024",
+      "id": 1
     },
     {
-      "id": 2,
-      "title": "Deploy Product",
-      "date": "6/10/2024",
-      "isCompleted": false
-    },
-    { "id": 3, "title": "Meditate", "date": "13/03/2024", "isCompleted": false }
+      "title": "1",
+      "date": "09.10.2024",
+      "id": 2
+    }
   ]
 }

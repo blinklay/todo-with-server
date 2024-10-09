@@ -4,6 +4,9 @@
 
   width: 350px;
   border-radius: 5px;
+  height: 500px;
+
+  overflow-y: auto;
 }
 
 .laoder {
@@ -13,6 +16,12 @@
   border: 10px solid var(--color-background-tertiary);
   border-left-color: transparent;
   animation: spin 1s infinite;
+}
+
+.message {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 20px;
 }
 
 @keyframes spin {
